@@ -7,7 +7,9 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,51 +20,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name="PARAMETROS_BASE")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ParametrosBase {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable=false, nullable=false)
 	Long id;
 	
 	@Column
-	String estadosPermitidos;
+	String campo;
 	
 	@Column
-	Integer minAntiguedad;
-	
-	@Column
-	Long valorMinimoCredisolidario;
-	
-	@Column
-	Long valorMaximoCredisolidario;
-	
-	@Column
-	Long valorSMMV;
-	
-	@Column
-	String correoLog;
-	
-	@Column
-	Long intervaloValorMonto;
-	
-	@Column
-	Integer intervaloPlazo;
-	
-	@Column
-	String linkTyC;
-	
-	@Column
-	String mensajeInformativoTasa;
-	
-	/*
-	 * @Column String productosValidar;
-	 * 
-	 * @Column String fechaPerseverancia;
-	 */
+	String valor;
 	
 	@Column
 	boolean activo;

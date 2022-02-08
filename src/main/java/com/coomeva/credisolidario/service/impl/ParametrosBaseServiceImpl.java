@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coomeva.credisolidario.domain.ParametrosBase;
@@ -15,12 +16,9 @@ import com.coomeva.credisolidario.service.ParametrosBaseService;
 @Service
 public class ParametrosBaseServiceImpl implements ParametrosBaseService {
 
+	@Autowired
 	ParametrosBaseRepository parametrosBaseRepository;
-	
-	public ParametrosBaseServiceImpl(ParametrosBaseRepository parametrosBaseRepository) {
-		this.parametrosBaseRepository = parametrosBaseRepository;
-	}
-	
+			
 	private ParametrosBaseDTO convertDTO(ModelMapper mapper, ParametrosBase parametrosBase) {
 		return mapper.map(parametrosBase, ParametrosBaseDTO.class);
 	}
@@ -55,7 +53,7 @@ public class ParametrosBaseServiceImpl implements ParametrosBaseService {
 	public void update(Long id, ParametrosBaseDTO item) {
 		ParametrosBase baseDb = parametrosBaseRepository.findById(id).get();
 		
-		baseDb.setEstadosPermitidos(item.getEstadosPermitidos());
+		baseDb.setCampo(item.getCampo());
 		///TODO: Implementar logica
 		parametrosBaseRepository.save(baseDb);
 	}

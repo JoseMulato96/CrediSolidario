@@ -16,7 +16,7 @@ public class ConsumirWS implements Serializable, ConsumirWSService {
 
 	private final Logger logger = Logger.getLogger(ConsumirWS.class);
 
-	@Value("${urlservicioBanco}")
+//	@Value("${urlservicioBanco}")
 	private String urlServiceBanco;
 	
 

@@ -19,31 +19,10 @@ import lombok.NoArgsConstructor;
 public class ParametrosBaseDTO {
 	Long Id;
 	
-	String estadosPermitidos;
+	String campo;
 	
-	Integer minAntiguedad;
-	
-	Long valorMinimoCredisolidario;
-	
-	Long valorMaximoCredisolidario;
-	
-	Long valorSMMV;
-	
-	String correoLog;
-	
-	Long intervaloValorMonto;
-	
-	Integer intervaloPlazo;
-	
-	String linkTyC;
-	
-	String mensajeInformativoTasa;
-	
-	/*
-	 * @Column String productosValidar;
-	 * 
-	 * @Column String fechaPerseverancia;
-	 */
+	String valor;
+		
 	boolean activo;
 	
 	String usuarioCreacion;

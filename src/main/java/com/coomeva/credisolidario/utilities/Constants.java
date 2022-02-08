@@ -13,7 +13,7 @@ public class Constants {
 	/* Variables Constantes */
 
 	public static final String DESCRIPCION_ERROR_EXITO = "Consulta Exitosa";
-	public static final String DESCRIPCION_ERROR_DATA_EMPTY = "No se encuentra datos para esta identificacion";	
+	public static final String DESCRIPCION_ERROR_DATA_EMPTY = "No se encuentra datos";	
 	public static final String TOKEN_NO_CORRESPONDE = "Token no correspondiente a este usuario";
 	public static final String SECRET_KEY = "mySecretKey";	
 }
