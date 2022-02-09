@@ -14,28 +14,24 @@ import com.coomeva.credisolidario.utilities.ResponseService;
 import com.coomeva.credisolidario.utilities.Status;
 
 @RestController
-@RequestMapping(value = "api/v1/")
+@RequestMapping(value = "api/v1")
 public class ParametrosBaseController {
-	
-	static final  Logger logger = Logger.getLogger(ParametrosBaseController.class); 
+
+	static final Logger logger = Logger.getLogger(ParametrosBaseController.class);
 
 	@Autowired
 	private ParametrosBaseService parametrosBaseService;
-	
-	@GetMapping(value = "parametrosbase")
-	public ResponseEntity<ResponseService> getParametrosBase(){				
+
+	@GetMapping(value = "/parametrosbase")
+	public ResponseEntity<ResponseService> getParametrosBase() {
 		ResponseService response = new ResponseService();
 		try {
 			response.setData(parametrosBaseService.getAll());
 			response.setStatus(Status.OK);
-			return ResponseEntity.ok(response);			
-		} 
-		/*catch (ExceptionCeroPapel e) {
-			response.setStatus(Status.FAILURE);
-			response.setMessageError(e.getMessage());
 			return ResponseEntity.ok(response);
-		}*/catch (Exception e) {
-			logger.error(Constants.ERROR_SAVE,e);
+
+		} catch (Exception e) {
+			logger.error(Constants.ERROR_SAVE, e);
 			response.setStatus(Status.FAILURE);
 			response.setMessageError(Constants.ERROR_SAVE);
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -20,7 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="PARAMETROS_BASE")
+@Table(name="SC_PARAMETROS_BASE")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
