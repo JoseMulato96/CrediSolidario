@@ -7,7 +7,7 @@ import com.coomeva.credisolidario.dto.ParametrosBaseDTO;
 public interface ParametrosBaseService {
 	List<ParametrosBaseDTO> getAll();
 	ParametrosBaseDTO getById(Long id);
-	ParametrosBaseDTO add(ParametrosBaseDTO item);
-	void update(Long id, ParametrosBaseDTO item);
+	List<ParametrosBaseDTO> add(List<ParametrosBaseDTO> item);
+	List<ParametrosBaseDTO> update(List<ParametrosBaseDTO> item);
 	void delete(Long id);
 }

@@ -9,42 +9,35 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coomeva.credisolidario.dto.ParametrosBaseDTO;
-import com.coomeva.credisolidario.service.ParametrosBaseService;
+import com.coomeva.credisolidario.dto.ParametrosDestinoEconomicoDTO;
+import com.coomeva.credisolidario.service.ParametroDestinoEconomicoService;
 import com.coomeva.credisolidario.utilities.Constants;
 import com.coomeva.credisolidario.utilities.ResponseService;
 import com.coomeva.credisolidario.utilities.Status;
 
 @RestController
-@RequestMapping(value = "api/v1/parametrosbase")
-public class ParametrosBaseController {
-	
-	static final  Logger logger = Logger.getLogger(ParametrosBaseController.class); 
+@RequestMapping(value = "api/v1/destinoeconomico")
+public class ParametroDestinoEconomicoController {
 
+	static final  Logger logger = Logger.getLogger(ParametroDestinoEconomicoController.class); 
+	
 	@Autowired
-	private ParametrosBaseService parametrosBaseService;
+	private ParametroDestinoEconomicoService destinoEconomicoService;
 	
 	@GetMapping()
 	public ResponseEntity<ResponseService> get(){				
 		ResponseService response = new ResponseService();
 		try {
-			response.setData(parametrosBaseService.getAll());
+			response.setData(destinoEconomicoService.getAll());
 			response.setStatus(Status.OK);
 			return ResponseEntity.ok(response);			
-		} 
-		/*catch (ExceptionCeroPapel e) {
-			response.setStatus(Status.FAILURE);
-			response.setMessageError(e.getMessage());
-			return ResponseEntity.ok(response);
-		}*/catch (Exception e) {
+		}catch (Exception e) {
 			logger.error(Constants.ERROR_SAVE,e);
 			response.setStatus(Status.FAILURE);
 			response.setMessageError(Constants.ERROR_SAVE);
@@ -53,10 +46,10 @@ public class ParametrosBaseController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<ResponseService> post(@RequestBody ArrayList<ParametrosBaseDTO> items){
+	public ResponseEntity<ResponseService> post(@RequestBody ArrayList<ParametrosDestinoEconomicoDTO> items){
 		ResponseService response = new ResponseService();
 		try {
-			response.setData(parametrosBaseService.add(items));
+			response.setData(destinoEconomicoService.add(items));
 			response.setStatus(Status.OK);
 			return ResponseEntity.ok(response);
 		} catch (Exception e) {
@@ -68,10 +61,10 @@ public class ParametrosBaseController {
 	}
 	
 	@PutMapping()
-	public ResponseEntity<ResponseService> put(@RequestBody List<ParametrosBaseDTO> items){
+	public ResponseEntity<ResponseService> put(@RequestBody List<ParametrosDestinoEconomicoDTO> items){
 		ResponseService response = new ResponseService();
 		try {
-			response.setData(parametrosBaseService.update(items));
+			response.setData(destinoEconomicoService.update(items));
 			response.setStatus(Status.OK);
 			return ResponseEntity.ok(response);
 		} catch (Exception e) {
@@ -86,7 +79,7 @@ public class ParametrosBaseController {
 	public ResponseEntity<ResponseService> delete(@RequestBody Long id){
 		ResponseService response = new ResponseService();
 		try {
-			parametrosBaseService.delete(id);
+			destinoEconomicoService.delete(id);
 			response.setStatus(Status.OK);
 			return ResponseEntity.ok(response);
 		} catch (Exception e) {
