@@ -23,7 +23,6 @@ import com.coomeva.credisolidario.utilities.Status;
  * @Fecha: 08/02/2022 Clase dedicada al proceso de logueo de usuario
  */
 @RestController
-@RequestMapping(value = "api/v1")
 public class AuthenticationController {
 	static final Logger logger = Logger.getLogger(AuthenticationController.class);
 

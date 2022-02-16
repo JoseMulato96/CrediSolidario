@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.coomeva.credisolidario.service.ParametrosBaseService;
@@ -14,7 +14,6 @@ import com.coomeva.credisolidario.utilities.ResponseService;
 import com.coomeva.credisolidario.utilities.Status;
 
 @RestController
-@RequestMapping(value = "api/v1")
 public class ParametrosBaseController {
 
 	static final Logger logger = Logger.getLogger(ParametrosBaseController.class);
@@ -22,7 +21,7 @@ public class ParametrosBaseController {
 	@Autowired
 	private ParametrosBaseService parametrosBaseService;
 
-	@GetMapping(value = "/parametrosbase")
+	@RequestMapping(value = "parametrosbase", method = RequestMethod.GET)
 	public ResponseEntity<ResponseService> getParametrosBase() {
 		ResponseService response = new ResponseService();
 		try {

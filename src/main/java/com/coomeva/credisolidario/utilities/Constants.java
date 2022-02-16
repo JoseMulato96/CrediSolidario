@@ -7,9 +7,9 @@ public class Constants {
 	public static final String SIGNING_KEY = "c00m3v42022*";
 	public static final String TOKEN_PREFIX = "Bearer ";
 	public static final String HEADER_STRING = "Authorization";
-	public static final String NAME_APP_PROFILE = "CREDISOLIDARIO";
+	public static final String NAME_APP_PROFILE = "SimuladorCredisolidario";
 	public static final String DIRECTORY_APP_PROFILE = "2";
-	public static final String VALIDATE_APP_PROFILE = "2";
+	public static final String VALIDATE_APP_PROFILE = "1";
 	public static final Long NIVEL_CIUDAD = (long) 4;
 	public static final Character ESTADO_ACTIVO = '1';
 	public static final Character ESTADO_INACTIVO = '0';

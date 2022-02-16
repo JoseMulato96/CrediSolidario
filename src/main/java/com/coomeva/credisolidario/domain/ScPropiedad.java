@@ -69,7 +69,7 @@ public class ScPropiedad implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.coomeva.ceropapel.entity.FcpPropiedad[ consPropiedad=" + consPropiedad + " ]";
+		return "com.coomeva.credisolidario.domain.ScPropiedad[ consPropiedad=" + consPropiedad + " ]";
 	}
 
 }
