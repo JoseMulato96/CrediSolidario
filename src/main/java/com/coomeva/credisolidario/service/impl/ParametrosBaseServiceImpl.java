@@ -1,5 +1,6 @@
 package com.coomeva.credisolidario.service.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -41,27 +42,46 @@ public class ParametrosBaseServiceImpl implements ParametrosBaseService {
 	}
 
 	@Override
-	public ParametrosBaseDTO add(ParametrosBaseDTO item) {
-		ModelMapper modelMapper = new ModelMapper();
-		ParametrosBase parametrosBase = modelMapper.map(item, ParametrosBase.class);		
-		parametrosBase = parametrosBaseRepository.save(parametrosBase);
-		ParametrosBaseDTO parametrosBaseDTO = modelMapper.map(parametrosBase, ParametrosBaseDTO.class);
-		return parametrosBaseDTO;
+	public List<ParametrosBaseDTO> add(List<ParametrosBaseDTO> item) {
+		return addOrUpdateEntity(item);
 	}
 
 	@Override
-	public void update(Long id, ParametrosBaseDTO item) {
-		ParametrosBase baseDb = parametrosBaseRepository.findById(id).get();
-		
-		baseDb.setCampo(item.getCampo());
-		///TODO: Implementar logica
-		parametrosBaseRepository.save(baseDb);
+	public List<ParametrosBaseDTO> update(List<ParametrosBaseDTO> item) {
+		return addOrUpdateEntity(item);
 	}
 
 	@Override
 	public void delete(Long id) {
-		parametrosBaseRepository.deleteById(id);
-
+		if(id != null && id > 0) {
+			parametrosBaseRepository.deleteById(id);	
+		}
+	}
+	
+	private List<ParametrosBaseDTO> addOrUpdateEntity(List<ParametrosBaseDTO> item){
+		ModelMapper modelMapper = new ModelMapper();
+		List<ParametrosBase> lstParamsBase = new ArrayList<>();
+		List<ParametrosBaseDTO> lstParamsBaseDto = new ArrayList<>();
+		
+		for (ParametrosBaseDTO paramBaseDto : item) {
+			ParametrosBase parametrosBase = modelMapper.map(paramBaseDto, ParametrosBase.class);
+			parametrosBase.setActivo(true);
+			if(parametrosBase.getId() == null || !(parametrosBase.getId() > 0)) {
+				parametrosBase.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
+				parametrosBase.setUsuarioCreacion("User");	
+			}			
+			parametrosBase.setFechaModificacion(new Timestamp(System.currentTimeMillis()));			
+			parametrosBase.setUsuarioModificacion("User");
+			lstParamsBase.add(parametrosBase);
+		}		
+		
+		lstParamsBase = parametrosBaseRepository.saveAll(lstParamsBase);
+		
+		for (ParametrosBase itemBase : lstParamsBase) {
+			lstParamsBaseDto.add( modelMapper.map(itemBase, ParametrosBaseDTO.class));
+		}
+		
+		return lstParamsBaseDto;
 	}
 
 }
